@@ -1,0 +1,41 @@
+<body>
+    <h1 style="text-align: center;" class="'mb-3">Medicines</h1>
+    <div class="search-box">
+        <input style="margin-left: 80px;" type="text" class="input" id="drugname" name="drugname" placeholder="Search" [(ngModel)] ="drugname">
+        <button type="submit" class="search-button" (click)=getDrugByDrugName(drugname)>
+            Search
+        </button>
+    </div>
+    <div class="container">
+        <div class="container my-5">
+            <table class="table" *ngIf="drugsDisplay && drugsDisplay.length>0">
+                <thead>
+                    <tr>
+                        <th>MedicineId</th>
+                        <th>MedicineName</th>
+                        <th>MedicineDescription</th>
+                        <th>MedicinePrice</th>
+                        <th>MedicineQuantityAvailable</th>
+                        <th>RequiredQuantity</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row" *ngFor="let drug of drugsDisplay;let i=index">
+                        <td>{{ drug.DrugId}}</td>
+                        <td>{{ drug.DrugName}}</td>
+                        <td>{{ drug.DrugDescription}}</td>
+                        <td>{{ drug.DrugPrice}}</td>
+                        <td>{{ drug.DrugQuantityAvailable}}</td>
+                        <td><input type="number" id="reqQuantity" name="reqQuantity" min="1" [(ngModel)] ="reqQuantity[i]"></td>
+                        <td><button class="btn btn-info" (click)="postCart(drug.DrugId,reqQuantity[i])">Add To Cart<i class=""></i></button></td>
+                    </tr>
+                </tbody>
+        
+            </table>
+            <p *ngIf="!drugsDisplay || drugsDisplay.length <=0">Drugs NotFound</p>
+        </div>
+        
+        
+    </div>
+</body>

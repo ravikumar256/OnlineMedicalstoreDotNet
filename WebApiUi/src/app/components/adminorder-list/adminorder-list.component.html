@@ -1,0 +1,43 @@
+<body>
+    <h1 style="text-align: center;" class="'mb-3">Orders</h1>
+            <div class="search-box">
+                <input style="margin-left: 80px;" type="text" placeholder="Search" [(ngModel)] ="useremail">
+                <button type="submit" class="search-button" (click)=getOrderByEmail(useremail)>
+                    search
+                </button>
+            </div>
+    <div class="container">
+            <table class="table" *ngIf="showOrders && showOrders.length>0">
+                <thead>
+                    <tr>
+                        <th style="font-size: 20px;">OrderId</th>
+                        <th style="font-size: 20px;">UserEmail</th>
+                        <th style="font-size: 20px;"></th>
+                        <th style="font-size: 20px;">OrderedQuantity</th>
+                        <th style="font-size: 20px;">OrderedPrice</th>
+                        <th style="font-size: 20px;">DrugName</th>
+                        <th style="font-size: 20px;">OrderDate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cart of showOrders">
+                        <td style="font-weight: bold;">{{ cart.OrderId}}</td>
+                        <td style="font-weight: bold;">{{ cart.UserEmail}}</td>
+                        <td style="font-weight: bold;"> </td>
+                        <td style="font-weight: bold;">{{ cart.OrderedQuantity}}</td>
+                        <td style="font-weight: bold;">{{ cart.OrderPrice}}</td>
+                        <td style="font-weight: bold;">{{ cart.DrugName}}</td>
+                        <td style="font-weight: bold;">{{ cart.OrderedDate}}</td>
+        
+                    </tr>
+                </tbody>
+        
+            </table>
+            <p *ngIf="!showOrders || showOrders.length <=0">No Orders</p>
+        </div>
+        
+        
+        
+        
+   
+</body>

@@ -1,0 +1,46 @@
+<body>
+  <h1 style="text-align: center;" class="mb-3">Add New Drug</h1>
+  <div class="container">
+    <form #form="ngForm" (ngSubmit)="addDrug()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="drugname" class="form-label">Drug Name</label>
+            <input type="text" class="form-control" id="drugname" name="drugname" [(ngModel)]="addDrugRequest.DrugName" required>
+            <div *ngIf="!addDrugRequest.DrugName && isFormSubmitted" style="color:red;">Drug Name is required!</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="drugdescription" class="form-label">Drug Description</label>
+            <input type="text" class="form-control" id="drugdescription" name="drugdescription" [(ngModel)]="addDrugRequest.DrugDescription" required>
+            <div *ngIf="!addDrugRequest.DrugDescription && isFormSubmitted" style="color:red;">Drug Description is required!</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="drugprice" class="form-label">Drug Price</label>
+            <input type="number" class="form-control" id="drugprice" name="drugprice" [(ngModel)]="addDrugRequest.DrugPrice" required>
+            <div *ngIf="!addDrugRequest.DrugPrice && isFormSubmitted" style="color:red;">Drug Price is required!</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="drugquantityavailable" class="form-label">Drug Quantity Available</label>
+            <input type="number" class="form-control" id="drugquantityavailable" name="drugquantityavailable" [(ngModel)]="addDrugRequest.DrugQuantityAvailable" required>
+            <div *ngIf="!addDrugRequest.DrugQuantityAvailable && isFormSubmitted" style="color:red;">Quantity is required!</div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <input type="text" class="form-control" id="message" name="message" [(ngModel)]="addDrugRequest.SuccessMessage" required>
+        <div *ngIf="!addDrugRequest.SuccessMessage && isFormSubmitted" style="color:red;">Message is required!</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Drug</button>
+    </form>
+  </div>
+</body>

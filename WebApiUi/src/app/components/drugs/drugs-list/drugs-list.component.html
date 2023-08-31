@@ -1,0 +1,40 @@
+<body>
+    <h1 style="text-align: center;" class="'mb-3">Drugs</h1>
+    <div class="search-box">
+        <input style="margin-left: 80px;" type="text" placeholder="Search" [(ngModel)] ="name">
+        <button type="submit" class="search-button" (click)=getDrugByName(name)>
+            search
+        </button>
+      </div>
+    <div class="container">
+        <div class="container my-5">
+            <table class="table" *ngIf="drugs && drugs.length>0">
+                <thead>
+                    <tr>
+                        <th style="font-size: 20px;">DrugId</th>
+                        <th style="font-size: 20px;">DrugName</th>
+                        <th style="font-size: 20px;">DrugDescription</th>
+                        <th style="font-size: 20px;">DrugPrice</th>
+                        <th style="font-size: 20px;">DrugQuantityAvailable</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let drug of drugs">
+                        <td style="font-weight: bold;">{{ drug.DrugId}}</td>
+                        <td style="font-weight: bold;">{{ drug.DrugName}}</td>
+                        <td style="font-weight: bold;">{{ drug.DrugDescription}}</td>
+                        <td style="font-weight: bold;">{{ drug.DrugPrice}}</td>
+                        <td style="font-weight: bold;">{{ drug.DrugQuantityAvailable}}</td>
+                        <td style="font-weight: bold;"><button class="btn btn-primary" [routerLink]="['/drugs','edit',drug.DrugId]">View</button></td>
+                        
+        
+                    </tr>
+                </tbody>
+        
+            </table>
+            <p *ngIf="!drugs || drugs.length <=0">Drugs NotFound</p>
+        </div>
+        
+    </div>
+</body>

@@ -1,0 +1,37 @@
+<html>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+  <div class="container">
+    <h1 class="navbar-brand">PharmStore+</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div *ngIf="isUserLoggedIn(); else AdminCheck" class="user-nav navbar-right">
+        <button style="margin-right: 10px;color: white;background-color: inherit;border:none;" aria-current="page" routerLink="displaydrug" [disabled]="searchDrugsClicked" (click)="isSearchDrugsClicked()">SearchDrugs</button>
+        <button style="margin-right: 10px;color: white;background-color: inherit;border:none;" aria-current="page" routerLink="displaydrug/cart" [disabled]="myCartClicked" (click)="isMyCartClicked()">MyCart</button>
+        <button style="margin-right: 10px;color: white;background-color: inherit;border:none;" aria-current="page" routerLink="displaydrug/cart/orders" [disabled]="myOrdersClicked" (click)="isMyOrdersClicked()">My Orders</button>
+        <span style="margin-left:570px;margin-right: 10px;color: white;">{{ getUsername() }}</span>
+        <button (click)="logout()" style="margin-right: 10px;color: white;background-color: inherit;border:none;">Logout</button>
+        <!-- Additional buttons for authenticated user -->
+      </div>
+      <ng-template #AdminCheck>
+        <div *ngIf="isAdminLoggedIn(); else loggedOutContent" class="navbar-nav ml-auto">
+          <button style="margin-right: 10px;color: white;background-color: inherit;border:none;" routerLink="drugs/add" [disabled]="addDrugClicked" (click)="isAddDrugClicked()">AddDrug</button>
+          <button style="margin-right: 10px;color:white;background-color: inherit;border:none;" routerLink="drugs" [disabled]="DrugsClicked" (click)="isDrugsClicked()">Drugs</button>
+          <button style="margin-right: 10px;color:white;background-color: inherit;border:none;" routerLink="drugs/orders" [disabled]="showOrderClicked" (click)="isShowOrderClicked()">showOrders</button>
+          <span style="margin-left:660px;margin-right: 10px;color: white;">{{ getUsername() }}</span>
+          <button (click)="logout()" style="margin-right: 10px;color: white;background-color: inherit;border:none;">Logout</button>
+          <!-- Additional buttons for authenticated user -->
+        </div>
+      </ng-template>
+      <ng-template #loggedOutContent>
+        <div class="navbar-nav ml-auto">
+          <button class="nav-link active" style="margin-left:840px;margin-right: 10px;" aria-current="page" routerLink="home/users/login" [disabled]="loginClicked" (click)="isLoginClicked()">Login</button>
+          <button class="nav-link active" style="margin-right: 0px;" aria-current="page" routerLink="signup" [disabled]="signUpClicked" (click)="isSignUpClicked()">Sign Up</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+</html>
